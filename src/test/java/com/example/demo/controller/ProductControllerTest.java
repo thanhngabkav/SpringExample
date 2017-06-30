@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import com.example.demo.DemoApplication;
 import com.example.demo.models.ProductModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.example.demo.entities.Product;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -18,7 +18,7 @@ public class ProductFacade implements IProductFacade{
 
     @Override
     public List<Product> GetAllProduct() {
-        return em.createQuery("FROM Product",Product.class).getResultList();
+        return em.createNamedQuery("Product.FindAll",Product.class).getResultList();
     }
 
     @Override
@@ -28,7 +28,9 @@ public class ProductFacade implements IProductFacade{
 
     @Override
     public Product GetProductById(String productId) {
-        return null;
+        return em.createNamedQuery("Product.GetById",Product.class)
+                .setParameter("productId",productId)
+                .getSingleResult();
     }
 
     @Override

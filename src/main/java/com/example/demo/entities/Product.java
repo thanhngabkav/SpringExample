@@ -1,20 +1,14 @@
-package entities;
+package com.example.demo.entities;
 
 import javax.persistence.*;
 
 /**
  * Created by THANH NGA on 6/28/2017.
  */
-@NamedQueries({
-        //Get All Products
-        @NamedQuery(name = "Product.FindAll",query = "Select p from Product p"),
-        //Get Product By ProductId
-        @NamedQuery(name = "Product.FindById",query = "select p from Product p where p.productId=:productId"),
-        //Get Products By CategoryId
-        @NamedQuery(name = "Product.FindByCategoryId",query = "select p from Product p where p.categoryId=:categoryId")
-})
 @Entity
+@Table(name = "Product")
 public class Product {
+    @Id
     private String productId;
     private String name;
     private double price;
@@ -32,8 +26,6 @@ public class Product {
     public Product() {
     }
 
-    @Id
-    @Column(name = "ProductId")
     public String getProductId() {
         return productId;
     }
@@ -42,8 +34,6 @@ public class Product {
         this.productId = productId;
     }
 
-    @Basic
-    @Column(name = "Name")
     public String getName() {
         return name;
     }
@@ -52,8 +42,6 @@ public class Product {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "Price")
     public double getPrice() {
         return price;
     }
@@ -62,8 +50,6 @@ public class Product {
         this.price = price;
     }
 
-    @Basic
-    @Column(name = "Quantity")
     public int getQuantity() {
         return quantity;
     }
@@ -72,7 +58,6 @@ public class Product {
         this.quantity = quantity;
     }
 
-    @Basic
     public String getCategoryId() {
         return categoryId;
     }
@@ -80,7 +65,6 @@ public class Product {
     public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
     }
-
 
     @Override
     public boolean equals(Object o) {

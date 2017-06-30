@@ -1,6 +1,6 @@
-package controller;
+package com.example.demo.controller;
 
-import exceptions.MyDemoException;
+import com.example.demo.exceptions.MyDemoException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

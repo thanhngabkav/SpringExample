@@ -1,14 +1,15 @@
-package dataAccess;
+package com.example.demo.dataAccess;
 
-import entities.Category;
-import services.CategoryService;
+import com.example.demo.entities.Category;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by THANH NGA on 6/29/2017.
  */
-public class CategoryFacade implements CategoryService{
+@Repository
+public class CategoryFacade implements ICategoryFacade {
     @Override
     public List<Category> GetAllCategories() {
         return null;

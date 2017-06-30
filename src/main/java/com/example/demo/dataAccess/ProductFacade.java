@@ -1,8 +1,7 @@
-package dataAccess;
+package com.example.demo.dataAccess;
 
-import entities.Product;
+import com.example.demo.entities.Product;
 import org.springframework.stereotype.Repository;
-import services.ProductService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,14 +11,14 @@ import java.util.List;
  * Created by THANH NGA on 6/29/2017.
  */
 @Repository
-public class ProductFacade implements ProductService{
+public class ProductFacade implements IProductFacade{
     //Init EntityManager
-    @PersistenceContext(unitName = "Entities")
+    @PersistenceContext(unitName = "default")
     private EntityManager em;
 
     @Override
     public List<Product> GetAllProduct() {
-        return em.createNamedQuery("Product.FindAll",Product.class).getResultList();
+        return em.createQuery("FROM Product",Product.class).getResultList();
     }
 
     @Override
@@ -41,7 +40,6 @@ public class ProductFacade implements ProductService{
     public void RemoveProduct(Product product) {
 
     }
-
     @Override
     public void EditProduct(Product product) {
 

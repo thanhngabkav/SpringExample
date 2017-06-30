@@ -1,7 +1,8 @@
-package services;
+package com.example.demo.services;
 
-import models.Student;
+import com.example.demo.models.Student;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * Created by THANH NGA on 6/28/2017.
  */
-@Repository
+@Service
 public class StudentService {
     public List<Student> GetAll(){
         Student st = new Student("Nga","HCM");

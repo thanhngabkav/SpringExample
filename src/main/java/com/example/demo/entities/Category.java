@@ -1,24 +1,25 @@
-package entities;
+package com.example.demo.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by THANH NGA on 6/28/2017.
  */
-@NamedQueries({
-        //Get All Categories
-        @NamedQuery(name = "Category.FindAll",query = "Select c from Category c"),
-        //Get category by categoryId
-        @NamedQuery(name = "Category.FindById",query = "Select c from Category c where c.categoryId=:categoryId")
-})
 @Entity
+@Table(name = "Category")
 public class Category {
+    @Id
     private String categoryId;
     private String name;
     private String description;
 
-    @Id
-    @Column(name = "CategoryId")
+    @OneToMany(mappedBy = "category")
+    private List<Product> productList;
+
+    public Category() {
+    }
+
     public String getCategoryId() {
         return categoryId;
     }
@@ -27,8 +28,6 @@ public class Category {
         this.categoryId = categoryId;
     }
 
-    @Basic
-    @Column(name = "Name")
     public String getName() {
         return name;
     }
@@ -37,14 +36,20 @@ public class Category {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "Description")
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 
     @Override

@@ -1,14 +1,14 @@
-package controller;
+package com.example.demo.controller;
 
-import entities.Product;
-import exceptions.MyDemoException;
-import models.ProductModel;
+import com.example.demo.entities.Product;
+import com.example.demo.exceptions.MyDemoException;
+import com.example.demo.models.ProductModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import services.ProductService;
+import com.example.demo.services.IProductService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
 public class ProductController {
     //Init Product Service
     @Autowired
-    private ProductService productService;
+    private IProductService productService;
 
     /**
      * RequestMethod : GET
@@ -33,11 +33,7 @@ public class ProductController {
      */
     @RequestMapping(value = "/products",method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<ProductModel>> GetAllProduct(){
-        List<Product> productList = productService.GetAllProduct();
-        List<ProductModel> productModels = new ArrayList<ProductModel>();
-        for (Product p:productList) {
-            productModels.add(new ProductModel(p.getProductId(),p.getName(),p.getPrice(),p.getQuantity(),p.getCategoryId()));
-        }
+        List<ProductModel> productModels = productService.GetAllProduct();
         ResponseEntity<List<ProductModel>> responseEntity = new ResponseEntity<List<ProductModel>>(productModels, HttpStatus.OK);
         return  responseEntity;
     }
@@ -52,7 +48,7 @@ public class ProductController {
      */
     @RequestMapping(value = "/products/{id}",method = RequestMethod.GET,produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ProductModel> GetProductById(@PathVariable("id") String productId){
-        Product product = productService.GetProductById(productId);
+        ProductModel product = productService.GetProductById(productId);
         //If not exit return 404
         if(product == null)
             return  new ResponseEntity<ProductModel>(HttpStatus.NOT_FOUND);
@@ -71,7 +67,7 @@ public class ProductController {
      * HttpStatus : Created (201)
      */
     @RequestMapping(value = "/products",method = RequestMethod.POST,produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity CreateProduct(@RequestBody Product product) throws MyDemoException {
+    public ResponseEntity CreateProduct(@RequestBody ProductModel product) throws MyDemoException {
         //This try catch for test exception
         /**
          *
@@ -93,7 +89,7 @@ public class ProductController {
      * HttpStatus : OK
      */
      @RequestMapping(value = "/products",method = RequestMethod.PUT,produces = {MediaType.APPLICATION_JSON_VALUE})
-     public ResponseEntity EditProduct(@RequestBody Product product) throws MyDemoException {
+     public ResponseEntity EditProduct(@RequestBody ProductModel product) throws MyDemoException {
         //This try catch for test exception
         try {
             productService.EditProduct(product);
@@ -116,7 +112,7 @@ public class ProductController {
          * This try catch for test exception
          */
         try {
-            Product product = productService.GetProductById(productId);
+            ProductModel product = productService.GetProductById(productId);
             //If not exit
             if(product == null){
                 return new ResponseEntity(HttpStatus.NOT_FOUND);

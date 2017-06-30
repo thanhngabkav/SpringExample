@@ -1,4 +1,4 @@
-package models;
+package com.example.demo.models;
 
 /**
  * Created by THANH NGA on 6/27/2017.

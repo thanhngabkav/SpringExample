@@ -1,8 +1,8 @@
-package controller;
+package com.example.demo.controller;
 
 import com.example.demo.DemoApplication;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import models.Student;
+import com.example.demo.models.Student;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import services.StudentService;
+import com.example.demo.services.StudentService;
 
 import java.util.ArrayList;
 import java.util.List;

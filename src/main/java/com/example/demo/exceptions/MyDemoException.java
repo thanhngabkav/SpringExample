@@ -1,4 +1,4 @@
-package exceptions;
+package com.example.demo.exceptions;
 
 /**
  * Created by THANH NGA on 6/29/2017.

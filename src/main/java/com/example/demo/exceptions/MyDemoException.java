@@ -4,20 +4,20 @@ package com.example.demo.exceptions;
  * Created by THANH NGA on 6/29/2017.
  */
 public class MyDemoException extends Exception{
-    private String exceptionContent;
+    private String exceptionMessage;
 
     public MyDemoException(String exceptionContent) {
-        this.exceptionContent = exceptionContent;
+        this.exceptionMessage = exceptionContent;
     }
 
     public MyDemoException() {
     }
 
     public String getExceptionContent() {
-        return exceptionContent;
+        return exceptionMessage;
     }
 
-    public void setExceptionContent(String exceptionContent) {
-        this.exceptionContent = exceptionContent;
+    public void setExceptionContent(String exceptionMessage) {
+        this.exceptionMessage = exceptionMessage;
     }
 }

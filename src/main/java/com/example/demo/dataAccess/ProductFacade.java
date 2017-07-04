@@ -23,7 +23,7 @@ public class ProductFacade implements IProductFacade{
 
     @Override
     public List<Product> GetProductsByCategoryId(String categoryId) {
-        return null;
+        return em.createNamedQuery("Product.FindByCategoryId",Product.class).getResultList();
     }
 
     @Override

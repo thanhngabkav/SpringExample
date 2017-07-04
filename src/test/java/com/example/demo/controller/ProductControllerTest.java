@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.DemoApplication;
+import com.example.demo.Application;
 import com.example.demo.models.ProductModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringRunner.class)
 @WebMvcTest(ProductController.class)
-@ContextConfiguration(classes = DemoApplication.class)
+@ContextConfiguration(classes = Application.class)
 public class ProductControllerTest {
     @Autowired
     private MockMvc mockMvc;

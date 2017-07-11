@@ -23,9 +23,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
      * @param request
      * @return ResponseEntity
      */
-    @ExceptionHandler
+    @ExceptionHandler(MyDemoException.class)
     protected ResponseEntity<Object> HandleExceptionController(MyDemoException ex, WebRequest request){
-       // return new ResponseEntity<Object>(ex, HttpStatus.BAD_REQUEST);
         String bodyContent = "Error";
         return handleExceptionInternal(ex,bodyContent,new HttpHeaders(),HttpStatus.BAD_REQUEST,request);
     }

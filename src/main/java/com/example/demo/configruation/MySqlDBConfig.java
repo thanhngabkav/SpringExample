@@ -5,13 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
-import org.springframework.orm.jpa.JpaVendorAdapter;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.Database;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -19,7 +13,7 @@ import java.util.Properties;
  * Created by THANH NGA on 7/4/2017.
  */
 @Configuration
-public class DBConfig {
+public class MySqlDBConfig {
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
     @Primary
@@ -28,12 +22,29 @@ public class DBConfig {
                 .create()
                 .url("jdbc:mysql://localhost:3306/springexample_db")
                 .username("root")
-                .password("Thanhnga9x,pro")
+                .password("root")
                 .driverClassName("com.mysql.jdbc.Driver")
                 .build();
     }
 
-//    @Bean
+    @Bean
+    public LocalSessionFactoryBean localSessionFactoryBean(){
+        LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
+        localSessionFactoryBean.setDataSource(dataSource());
+        //localSessionFactoryBean.setPackagesToScan("entities");
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.show_sql", "true");
+        properties.setProperty("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
+        properties.setProperty("hibernate.format_sql", "true");
+        localSessionFactoryBean.setHibernateProperties(properties);
+        return  localSessionFactoryBean;
+    }
+
+
+    /**
+     * config for using with a persistence.xml
+     */
+    //    @Bean
 //    public JpaVendorAdapter jpaVendorAdapter(){
 //        HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
 //        hibernateJpaVendorAdapter.setShowSql(true);
@@ -58,18 +69,6 @@ public class DBConfig {
 //        lef.setJpaProperties(properties);
 //        return  lef;
 //    }
-    @Bean
-    public LocalSessionFactoryBean localSessionFactoryBean(){
-        LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
-        localSessionFactoryBean.setDataSource(dataSource());
-        localSessionFactoryBean.setPackagesToScan("entities");
-        Properties properties = new Properties();
-        properties.setProperty("hibernate.show_sql", "true");
-        properties.setProperty("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
-        properties.setProperty("hibernate.format_sql", "true");
-        localSessionFactoryBean.setHibernateProperties(properties);
-        return  localSessionFactoryBean;
-    }
 
 
 }

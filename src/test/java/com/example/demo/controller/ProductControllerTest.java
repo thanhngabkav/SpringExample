@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.Application;
-import com.example.demo.models.ProductModel;
+import com.example.demo.models.mysqlModel.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;

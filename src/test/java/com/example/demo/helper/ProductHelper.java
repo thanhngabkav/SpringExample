@@ -1,7 +1,7 @@
 package com.example.demo.helper;
 
-import com.example.demo.entities.Product;
-import com.example.demo.models.ProductModel;
+import com.example.demo.entities.mysqlEntities.Product;
+import com.example.demo.models.mysqlModel.ProductModel;
 
 
 /**

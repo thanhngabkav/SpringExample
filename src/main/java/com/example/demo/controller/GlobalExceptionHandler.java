@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.exceptions.MyDemoException;
+import com.example.demo.exceptions.MyExceptionModel;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +23,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
      * @param request
      * @return ResponseEntity
      */
-    @ExceptionHandler(MyDemoException.class)
-    protected ResponseEntity<Object> HandleExceptionController(MyDemoException ex, WebRequest request){
+    @ExceptionHandler(MyExceptionModel.class)
+    protected ResponseEntity<Object> HandleExceptionController(MyExceptionModel ex, WebRequest request){
         String bodyContent = "Error";
-        return handleExceptionInternal(ex,bodyContent,new HttpHeaders(),HttpStatus.BAD_REQUEST,request);
+        return handleExceptionInternal(ex,bodyContent,new HttpHeaders(),ex.getStatus(),request);
     }
 }

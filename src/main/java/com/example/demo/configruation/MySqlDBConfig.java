@@ -31,7 +31,7 @@ public class MySqlDBConfig {
     public LocalSessionFactoryBean localSessionFactoryBean(){
         LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
         localSessionFactoryBean.setDataSource(dataSource());
-        //localSessionFactoryBean.setPackagesToScan("entities");
+        localSessionFactoryBean.setPackagesToScan("com.example.demo.entities.mysqlEntities");
         Properties properties = new Properties();
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");

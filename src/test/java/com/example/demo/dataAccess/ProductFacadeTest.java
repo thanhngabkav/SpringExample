@@ -1,6 +1,7 @@
 package com.example.demo.dataAccess;
 
-import com.example.demo.entities.Product;
+import com.example.demo.dataAccess.mysqlRepository.IProductFacade;
+import com.example.demo.entities.mysqlEntities.Product;
 import com.example.demo.helper.ProductHelper;
 import org.junit.Assert;
 import org.junit.Test;
